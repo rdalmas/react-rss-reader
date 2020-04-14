@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Layout from './Layout.jsx';
+import Layout from '../components/Layout.jsx';
 import Form from '../components/Form.jsx';
 import List from "../components/List.jsx";
 import Pagination from "../components/Pagination.jsx";

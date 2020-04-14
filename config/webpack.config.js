@@ -10,7 +10,7 @@ module.exports = {
     // bundle the client for hot reloading
     'webpack-hot-middleware/client',
 
-    path.join(__dirname, '/../src/index.js'),
+    path.join(__dirname, '/../src/client/index.js'),
     // the entry point of our app
   ],
 
@@ -52,7 +52,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              includePaths: [path.join(__dirname, '/../src/assets/scss')],
+              includePaths: [path.join(__dirname, '/../src/client/assets/scss')],
             },
           },
         ],

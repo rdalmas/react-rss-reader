@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
   mode: "production",
-  entry: path.join(__dirname, '/../src/index.js'),
+  entry: path.join(__dirname, '/../src/client/index.js'),
 
   output: {
     filename: 'static/bundle.js',
@@ -33,7 +33,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
-              includePaths: [path.join(__dirname, '/../src/assets/scss')],
+              includePaths: [path.join(__dirname, '/../src/client/assets/scss')],
             },
           },
         ],

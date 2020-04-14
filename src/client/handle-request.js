@@ -3,7 +3,7 @@ import qs from "qs";
 
 const http = axios.create({
   headers: {
-    'Content-Type': 'application/json',
+    'Content-Type': 'text/xml',
     'Access-Control-Allow-Origin': '*'
   },
   paramsSerializer: params => qs.stringify(params, { skipNulls: true })
