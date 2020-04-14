@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+  mode: "development",
   entry: [
     'react-hot-loader/patch',
     // activate HMR for React
@@ -14,7 +15,7 @@ module.exports = {
   ],
 
   output: {
-    filename: 'bundle.js',
+    filename: 'static/bundle.js',
     // the output bundle
 
     path: path.join(__dirname, '/../dist'),
@@ -23,12 +24,17 @@ module.exports = {
     // necessary for HMR to know where to load the hot update chunks
   },
 
+  performance: {
+    hints: false,
+    maxEntrypointSize: 400000000
+  },
+
   devtool: 'inline-source-map',
 
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         use: [
           'babel-loader',
         ],
@@ -63,16 +69,20 @@ module.exports = {
 
     new webpack.NoEmitOnErrorsPlugin(),
     // do not emit compiled assets that include errors
+
+    new webpack.optimize.OccurrenceOrderPlugin(),
   ],
 
   devServer: {
     host: 'localhost',
     port: 3000,
-
     historyApiFallback: true,
     // respond to 404s with index.html
 
     hot: true,
     // enable HMR on the server
   },
+  optimization: {
+    minimize: false
+  }
 };

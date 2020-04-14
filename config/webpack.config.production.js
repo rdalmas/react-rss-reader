@@ -1,7 +1,7 @@
 var path = require('path');
-var webpack = require('webpack');
 
 module.exports = {
+  mode: "production",
   entry: path.join(__dirname, '/../src/index.js'),
 
   output: {
@@ -15,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         use: [
           'babel-loader'
         ],
@@ -40,11 +40,7 @@ module.exports = {
       }
     ]
   },
-
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      comments: false
-    })
-  ]
+  optimization: {
+    minimize: true
+  }
 };

@@ -1,7 +1,7 @@
-const express = require('express');
-const webpack = require('webpack');
-const path = require('path');
-const webpackConfig = require('../config/webpack.config');
+import express from 'express';
+import webpack from "webpack";
+import hotMiddleware from "webpack-hot-middleware";
+import webpackConfig from "../config/webpack.config";
 
 const config = {
   PORT: 3000,
@@ -12,16 +12,16 @@ const compiler = webpack(webpackConfig);
 
 const server = express();
 
-server.use(
-  require('webpack-dev-middleware')(compiler, {
-    noInfo: true,
-    publicPath: webpackConfig.output.publicPath
-  })
-);
-server.use(require('webpack-hot-middleware')(compiler));
+server.use(hotMiddleware(compiler));
 
-server.get('*', function(req, res) {
-  res.sendFile(path.join(__dirname, '/../index.html'));
+server.use(express.static('dist'));
+server.get('/api/rssFeed', async (req, res) => {
+  try {
+    const resp = await fetch(req.query.rssUrl, { method: "GET", headers: { "Content-Type": "application/json" } });
+    return await resp.text();
+  } catch (e) {
+    res.sendStatus(500);
+  }
 });
 
 // Prepare to receive requests.
