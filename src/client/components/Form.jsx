@@ -1,28 +1,31 @@
 import React, { useState, useContext } from "react";
 
 import http from "../handle-request";
-import { RssContext } from "./rss.provider";
+import { AppContext } from "../providers/app.provider";
 import { endpoints as api } from "../constants";
 
 const Form = () => {
   const [rssInput, setRssInput] = useState("");
-  const [, setRssFeed] = useContext(RssContext);
+  const { setAppState } = useContext(AppContext);
 
   const fetchRssFeed = async (e) => {
     e.preventDefault();
     try {
-      const rssFeed = await http.get(api.getRssFeed, { params: { rssUrl: rssInput }});
-      setRssFeed(rssFeed);
+      setAppState({ loading: true, error: false, message: "Loading..." });
+      const response = await http.get(api.getRssFeed, { params: { rssUrl: rssInput }});
+      setAppState({ rssFeed: response.data.rss, loading: false, message: "" });
     } catch (e) {
-      console.log(e);
+      setAppState({ rssFeed: {}, loading: false, error: true, message: "Error loading RSS feed. Please check the url or try again later..." });
     }
   }
 
   return (
     <form onSubmit={fetchRssFeed}>
-      <label htmlFor="rss-input">Rss Feed Url</label>
-      <input type="text" id="rss-input" name="rss-input" value={rssInput} onChange={(e) => setRssInput(e.target.value)} />
-      <button type="submit">Submit</button>
+      <div className="row center align-center">
+        <label id="rssLabel" htmlFor="rss-input">Rss Url</label>
+        <input aria-labelledby="rssLabel" type="text" placeholder="Type the RSS feed url here..." id="rss-input" name="rss-input" value={rssInput} onChange={(e) => setRssInput(e.target.value)} />
+        <button aria-label="Submit" disabled={!rssInput} type="submit">Submit</button>
+      </div>
     </form>
   );
 }

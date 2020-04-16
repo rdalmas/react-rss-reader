@@ -1,12 +1,28 @@
 import React, { useContext } from "react";
 
-import { RssContext } from "./rss.provider";
+import { AppContext } from "../providers/app.provider";
+import Item from "../components/Item.jsx";
+import ItemsPaginated from "./ItemsPaginated.jsx";
+import arrayMap from "../util/arrayMap";
 
 const List = () => {
-  const [rssFeed] = useContext(RssContext);
+  const { rssFeed, loading, error } = useContext(AppContext);
   return (
     <>
-      {console.log("RSS FEED => ", rssFeed)}
+      {!error && !loading && rssFeed && rssFeed.channel && arrayMap(rssFeed.channel, function(data) {
+        return (
+          <div key={data.title.substring(0, 10)}>
+            <section>
+              <ul>
+                <Item {...data} />
+              </ul>
+            </section>
+            <section>
+              <ItemsPaginated items={data.item} />
+            </section>
+          </div>
+          )
+      })}
     </>
   )
 };

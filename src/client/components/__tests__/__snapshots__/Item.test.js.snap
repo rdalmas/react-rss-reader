@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Item -  should render the component correctly 1`] = `
+<li>
+  <h4
+    aria-label="Title"
+  >
+    test
+  </h4>
+  <p
+    aria-label="Description"
+  >
+    this is a test
+  </p>
+  <div>
+    <a
+      aria-label="Link"
+      href="http://test.com"
+    >
+      http://test.com
+    </a>
+  </div>
+  <h6
+    aria-label="Date"
+  >
+    Published on: 
+    01/01/1950
+  </h6>
+</li>
+`;

@@ -4,7 +4,7 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from "./pages/App.jsx";
+import App from './pages/App.jsx';
 
 const render = Component =>
   ReactDOM.render(

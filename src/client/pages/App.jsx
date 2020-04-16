@@ -1,19 +1,19 @@
 import React from 'react';
 
-import Layout from '../components/Layout.jsx';
 import Form from '../components/Form.jsx';
 import List from "../components/List.jsx";
-import Pagination from "../components/Pagination.jsx";
-import RssProvider from "../components/rss.provider";
+import Message from '../components/Message.jsx';
+import AppProvider from '../providers/app.provider.js';
 
 const App = () => (
-  <RssProvider>
-    <Layout>
-      <Form />
-      <List />
-      <Pagination />
-    </Layout>
-  </RssProvider>
+  <AppProvider>
+    <div role="main" aria-labelledby="title">
+      <h1 id="title" className="center">RSS Reader</h1>
+    </div>
+    <Form />
+    <Message />
+    <List />
+  </AppProvider>
 );
 
 export default App;
