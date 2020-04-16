@@ -12,7 +12,7 @@ const Form = () => {
     e.preventDefault();
     try {
       setAppState({ loading: true, error: false, message: "Loading..." });
-      const response = await http.get(api.getRssFeed, { params: { rssUrl: rssInput }});
+      const response = await http.get(api.readRss, { params: { rssUrl: rssInput }});
       setAppState({ rssFeed: response.data.rss, loading: false, message: "" });
     } catch (e) {
       setAppState({ rssFeed: {}, loading: false, error: true, message: "Error loading RSS feed. Please check the url or try again later..." });

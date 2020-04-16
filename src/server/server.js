@@ -2,8 +2,8 @@ import express from 'express';
 import webpack from 'webpack';
 import hotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from '../../config/webpack.config';
-import axios from 'axios';
-import { parseString } from 'xml2js';
+
+import routes from "./api/routes";
 
 const config = {
   PORT: 3000,
@@ -18,21 +18,7 @@ server.use(hotMiddleware(compiler));
 
 server.use(express.static('dist'));
 
-server.get('/api/rssFeed', async (req, res, next) => {
-  try {
-    const resp = await axios.get(req.query.rssUrl, { method: 'GET', headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'text/xml'}});
-    const result = await new Promise((resolve, reject) => parseString(resp.data, (err, result) => {
-      if (err) {
-        reject(err);
-      }
-      else resolve(result);
-    }));
-    res.status(200).send(JSON.stringify(result));
-    next();
-  } catch (e) {
-    next(e);
-  }
-});
+server.use("/api", routes);
 
 // ERROR HANDLING
 server.use(function(err, req, res, next) {

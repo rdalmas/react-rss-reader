@@ -2,7 +2,7 @@
   "author": "Rodrigo Dalmas",
   "name": "rss-reader",
   "version": "1.0.0",
-  "description": "Rss reader",
+  "description": "Rss Reader build with React and Node.js/Express",
   "license": "MIT",
   "scripts": {
     "start": "nodemon --exec babel-node ./src/server/server.js",

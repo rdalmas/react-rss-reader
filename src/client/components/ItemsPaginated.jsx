@@ -11,7 +11,7 @@ const ItemsPaginated = ({ items }) => {
       <ul>
         {arrayMap(currentData(), function(data){
           return (
-              <Item key={data.title.substring(0, 10)} {...data} />
+              <Item {...data} />
           )
         })}
       </ul>

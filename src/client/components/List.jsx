@@ -11,7 +11,7 @@ const List = () => {
     <>
       {!error && !loading && rssFeed && rssFeed.channel && arrayMap(rssFeed.channel, function(data) {
         return (
-          <div key={data.title.substring(0, 10)}>
+          <div>
             <section>
               <ul>
                 <Item {...data} />

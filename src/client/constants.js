@@ -1,3 +1,3 @@
 export const endpoints = {
-  getRssFeed: '/api/rssFeed'
+  readRss: '/api/rss/read'
 }
