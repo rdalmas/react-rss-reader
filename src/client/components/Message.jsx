@@ -7,10 +7,10 @@ const Message = () => {
   return (
     <div>
       {error && (
-        <p className="center" aria-lable="Error">{message}</p>
+        <p className="center" aria-label="Error">{message}</p>
       )}
       {loading && (
-        <p className="center" aria-lable="Info">{message}</p>
+        <p className="center" aria-label="Info">{message}</p>
       )}
     </div>
   );
