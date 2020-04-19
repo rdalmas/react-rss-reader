@@ -14,7 +14,7 @@ exports[`App -  should render the component correctly 1`] = `
     </h1>
   </div>
   <Form />
-  <Message />
+  <Status />
   <List />
 </AppProvider>
 `;

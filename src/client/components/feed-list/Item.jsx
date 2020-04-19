@@ -1,10 +1,10 @@
 import React from "react";
 
-import arrayMap from "../util/arrayMap";
+import toArray from "../../util/to-array";
 
-const Item = ({ title=null, description=null, link=null, pubDate=null, image=null }) => (
+const Item = ({ title, description, link, pubDate, image }) => (
   <li>
-    {image && (arrayMap(image, function(img) { return (<img src={img.url} alt={img.title} aria-label={img.title} />) }))}
+    {image && toArray(image).map(img => (<img src={img.url} alt={img.title} aria-label={img.title} />))}
     {title && (<h4 aria-label="Title">{title}</h4>)}
     {description && (<p aria-label="Description">{description}</p>)}
     {link && (<div><a aria-label="Link" href={link}>{link}</a></div>)}

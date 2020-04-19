@@ -8,7 +8,14 @@ const defaultState = {
   setAppState: () => {}
 }
 
-export const AppContext = createContext({...defaultState});
+const AppContext = createContext({...defaultState});
+
+const defaultAppState = {
+  loading: false,
+  error: false,
+  rssFeed: {},
+  message: '',
+}
 
 const AppProvider = ({ children }) => {
   const setAppState = ({
@@ -17,27 +24,17 @@ const AppProvider = ({ children }) => {
     rssFeed,
     message
   }) => {
-    updateState(prevState => {
-      const newState = { ...prevState, loading, error, rssFeed, message }
-      return newState;
-    })
-  }
-
-  const defaultAppState = {
-    loading: false,
-    error: false,
-    rssFeed: {},
-    message: '',
-    setAppState
+    updateState(prevState => ({ ...prevState, loading, error, rssFeed, message }))
   }
 
   const [appState, updateState] = useState(defaultAppState);
 
   return (
-    <AppContext.Provider value={appState}>
+    <AppContext.Provider value={{...appState, ...{ setAppState }}}>
       {children}
     </AppContext.Provider>
   )
 }
 
+export { AppContext }
 export default AppProvider;
