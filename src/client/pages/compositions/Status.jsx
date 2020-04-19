@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React from 'react';
 
-import { AppContext } from "../providers/app.provider";
+import useAppState from "../../hooks/useAppState";
 
-const Message = () => {
-  const { message, error, loading } = useContext(AppContext);
+const Status = () => {
+  const [{ message, error, loading }] = useAppState();
+
   return (
     <div>
       {error && (
@@ -13,7 +14,7 @@ const Message = () => {
         <p className="center" aria-label="Info">{message}</p>
       )}
     </div>
-  );
+  )
 }
 
-export default Message;
+export default Status;

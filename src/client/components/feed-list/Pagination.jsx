@@ -1,19 +1,16 @@
 import React from "react";
 
-import usePagination from "../hooks/usePagination";
+import usePagination from "../../hooks/usePagination";
 import Item from "./Item.jsx";
-import arrayMap from "../util/arrayMap";
+import toArray from "../../util/to-array";
 
-const ItemsPaginated = ({ items }) => {
+const Pagination = ({ items }) => {
   const { next, prev, first, last, currentData, currentPage, maxPage } = usePagination(items, 10);
+
   return (
     <>
       <ul>
-        {arrayMap(currentData(), function(data){
-          return (
-              <Item {...data} />
-          )
-        })}
+        {toArray(currentData()).map(data => <Item {...data} />)}
       </ul>
       <div className="center">
         <button aria-label="go to first page" id="first" disabled={currentPage === 1} name="first" onClick={first}>First</button>
@@ -26,4 +23,4 @@ const ItemsPaginated = ({ items }) => {
   );
 }
 
-export default ItemsPaginated;
+export default Pagination;

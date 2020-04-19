@@ -1,6 +1,10 @@
 import axios from 'axios';
 import qs from 'qs';
 
+const ENDPOINTS = {
+  rss: '/api/rss/read'
+}
+
 const http = axios.create({
   headers: {
     'Content-Type': 'text/xml',
@@ -9,4 +13,5 @@ const http = axios.create({
   paramsSerializer: params => qs.stringify(params, { skipNulls: true })
 });
 
+export { ENDPOINTS }
 export default http;
